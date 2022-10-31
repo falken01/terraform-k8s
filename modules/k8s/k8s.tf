@@ -15,7 +15,6 @@ resource "kubernetes_deployment" "deploy" {
 
   spec {
     replicas = 3
-
     selector {
       match_labels = {
         test = "MyExampleApp"
@@ -62,5 +61,22 @@ resource "kubernetes_deployment" "deploy" {
         }
       }
     }
+  }
+}
+
+resource "kubernetes_service" "example" {
+  metadata {
+    name = "terraform-example"
+  }
+  spec {
+    selector = {
+      test = "MyExampleApp"
+    }
+    port {
+      port        = 80
+      target_port = 80
+    }
+
+    type = "LoadBalancer"
   }
 }

@@ -15,10 +15,10 @@ provider "azurerm" {
 }
 
 module "cluster" {
-  source               = "./modules/cluster"
-  location             = var.location
-  kubernetes_version   = var.kubernetes_version
-  ssh_key              = var.ssh_key
+  source             = "./modules/cluster"
+  location           = var.location
+  kubernetes_version = var.kubernetes_version
+  ssh_key            = var.ssh_key
 }
 
 module "k8s" {
